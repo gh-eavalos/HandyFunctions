@@ -60,9 +60,9 @@ while [ "$1" != "" ]; do
                       ;;
         -e    )       shift
                       Email=$1
+                      ;;
         -m    )       shift
                       MailCirc=$1
-                      ;;
                       ;;
         -OK   )       shift # To Be developed
                       afterok=$1
