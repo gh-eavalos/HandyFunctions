@@ -1,9 +1,10 @@
 # HandyFunctions
 Set of useful functions to smoothen the terminal experience.
 
-## Shell
+## Bash
 ### BasicJob
-Job header composer, capable of parallel instructions. Example output to further populate:
+Job header composer, capable of parallel instructions. 
+The command `$eBash/Basicjob -N Download_SRA -f $Logs/Download_SRA.sh -o $Logs/Download_SRA.out -m 10 -v 10 -p 1 -t 11-1237 -c 100` will produce this example output to further populate:
 ``` #!/bin/sh
 #$ -cwd
 #$ -N  Download_SRA
@@ -18,3 +19,12 @@ Job header composer, capable of parallel instructions. Example output to further
 #$ -t  11-1237
 #$ -tc 100
 ```
+### eFile
+Function whose utility is to string together a series of commands to generate, edit, save and make exe a file: "edit File".
+The example command: `eFile /Path/To/File.extension` follows these steps:
+
+1. Touch `file`
+2. Remove `file
+3. Generate and Edit `file`
+4. Chmod 755 `file`
+
