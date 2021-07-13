@@ -16,12 +16,13 @@ printf "\nusage: BasicJob
 \t[ -f  <str>  FileOut               Def:BasicJob.sh        ]
 \t[ -o  <str>  OutPut File           Def:/tmp/BasicJob.out  ]
 \t[ -w  <str>  WorkDir               Def:\$PWD              ]
-\t[ -m  <#>    Soft Memory <GB>      Def:20                 ]
+\t[ -s  <#>    Soft Memory <GB>      Def:20                 ]
 \t[ -v  <#>    Hard Memory <GB>      Def:20                 ]
 \t[ -p  <#>    Proc in Parallel Jobs Def:<NONE>             ]
 \t[ -t  <#,#>  Lines 2 Run Parallel  Def:<NONE>             ]
 \t[ -c  <#>    Max Parallel Jobs     Def:<NONE>             ]
 \t[ -e  <str>  email                 Def:eavalos            ]
+\t[ -m  <str>  Mail Circumstances    Def:beas               ]
 \t[ -q  <str>  Queue                 Def:tissue.q           ]
 \t[  *         Print This Help                              ]
 \n"
@@ -42,7 +43,7 @@ while [ "$1" != "" ]; do
         -w    )       shift
                       WorkDir=$1
                       ;;
-        -m    )       shift
+        -s    )       shift
                       SoftMem=$1
                       ;;
         -v    )       shift
@@ -59,6 +60,9 @@ while [ "$1" != "" ]; do
                       ;;
         -e    )       shift
                       Email=$1
+        -m    )       shift
+                      MailCirc=$1
+                      ;;
                       ;;
         -OK   )       shift # To Be developed
                       afterok=$1
@@ -82,7 +86,8 @@ printf '#!/bin/sh
 #$ -o  %s
 #$ -S  /usr/bin/sh
 #$ -M  %s@guardanthealth.com
-' ${Name:=BasicJob} ${WorkDir:=$PWD} ${Queue:=tissue.q} ${SoftMem:=20} ${HardMem:=20} ${OutF:=/tmp/eavalos/BasicJob.out} ${Email:=eavalos} > ${File:=BasicJob.sh}
+#$ -m  %s
+' ${Name:=BasicJob} ${WorkDir:=$PWD} ${Queue:=tissue.q} ${SoftMem:=20} ${HardMem:=20} ${OutF:=/tmp/eavalos/BasicJob.out} ${Email:=eavalos} ${MailCirc:=beas} > ${File:=BasicJob.sh}
 [ "${Parallel}"      != "" ] && printf "#$ -pe parallel %s\n" "$Parallel"      >> $File
 [ "${WhichParallel}" != "" ] && printf "#$ -t  %s\n"          "$WhichParallel" >> $File
 [ "${MaxParallel}"   != "" ] && printf "#$ -tc %s\n"          "$MaxParallel"   >> $File
