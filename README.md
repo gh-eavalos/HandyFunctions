@@ -1,7 +1,8 @@
 # HandyFunctions
 Set of useful functions to smoothen the terminal experience.
 
-## BasicJob
+## Shell
+### BasicJob
 Job header composer, capable of parallel instructions. Example output to further populate:
 ``` #!/bin/sh
 #$ -cwd
