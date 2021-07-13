@@ -39,6 +39,9 @@ while [ "$1" != "" ]; do
         -o    )       shift
                       OutF=$1
                       ;;
+        -w    )       shift
+                      WorkDir=$1
+                      ;;
         -m    )       shift
                       SoftMem=$1
                       ;;
