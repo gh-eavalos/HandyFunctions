@@ -8,7 +8,8 @@ Job header composer, capable of parallel instructions. The command
 `BasicJob -N Download_SRA -f $Logs/Download_SRA.sh -o $Logs/Download_SRA.out -m 10 -v 10 -p 1 -t 11-1237 -c 100`
 
 will produce this example output (`$Logs/Download_SRA.sh`) to further populate:
-``` #!/bin/sh
+```
+#!/bin/sh
 #$ -cwd
 #$ -N  Download_SRA
 #$ -j  y
