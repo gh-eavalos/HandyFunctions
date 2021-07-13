@@ -1,0 +1,8 @@
+# edit File
+# series of steps to generate (or regenerate) a file and make it executable.
+# Input:
+#        /Path/To/File.extension
+# Output:
+#        # Edited file
+
+touch $1 && rm $1 && nano $1 && chmod 755 $1
