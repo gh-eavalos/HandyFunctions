@@ -15,6 +15,7 @@ printf "\nusage: BasicJob
 \t[ -N  <str>  Job Name              Def:BasicJob           ]
 \t[ -f  <str>  FileOut               Def:BasicJob.sh        ]
 \t[ -o  <str>  OutPut File           Def:/tmp/BasicJob.out  ]
+\t[ -w  <str>  WorkDir               Def:\$PWD              ]
 \t[ -m  <#>    Soft Memory <GB>      Def:20                 ]
 \t[ -v  <#>    Hard Memory <GB>      Def:20                 ]
 \t[ -p  <#>    Proc in Parallel Jobs Def:<NONE>             ]
@@ -69,16 +70,16 @@ while [ "$1" != "" ]; do
 done
 
 printf '#!/bin/sh
-#$ -cwd
 #$ -N  %s
 #$ -j  y
 #$ -V  
+#$ -wd %s
 #$ -q  %s
 #$ -l  mem_free=%sG,h_vmem=%sG
 #$ -o  %s
 #$ -S  /usr/bin/sh
 #$ -M  %s@guardanthealth.com
-' ${Name:=BasicJob} ${Queue:=tissue.q} ${SoftMem:=20} ${HardMem:=20} ${OutF:=/tmp/eavalos/BasicJob.out} ${Email:=eavalos} > ${File:=BasicJob.sh}
+' ${Name:=BasicJob} ${WorkDir:=$PWD} ${Queue:=tissue.q} ${SoftMem:=20} ${HardMem:=20} ${OutF:=/tmp/eavalos/BasicJob.out} ${Email:=eavalos} > ${File:=BasicJob.sh}
 [ "${Parallel}"      != "" ] && printf "#$ -pe parallel %s\n" "$Parallel"      >> $File
 [ "${WhichParallel}" != "" ] && printf "#$ -t  %s\n"          "$WhichParallel" >> $File
 [ "${MaxParallel}"   != "" ] && printf "#$ -tc %s\n"          "$MaxParallel"   >> $File
