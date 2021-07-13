@@ -4,6 +4,7 @@ Set of useful functions to smoothen the terminal experience.
 ## Bash
 ### BasicJob
 Job header composer, capable of parallel instructions. 
+
 The command `$eBash/Basicjob -N Download_SRA -f $Logs/Download_SRA.sh -o $Logs/Download_SRA.out -m 10 -v 10 -p 1 -t 11-1237 -c 100` will produce this example output to further populate:
 ``` #!/bin/sh
 #$ -cwd
