@@ -25,6 +25,6 @@ The example command: `eFile /Path/To/File.extension` follows these steps:
 
 1. Touch `file`
 2. Remove `file`
-3. Generate and Edit `file`
+3. Generate and Edit `file` (w/nano instead of vim)
 4. Chmod 755 `file`
 
