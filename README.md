@@ -24,7 +24,7 @@ Function whose utility is to string together a series of commands to generate, e
 The example command: `eFile /Path/To/File.extension` follows these steps:
 
 1. Touch `file`
-2. Remove `file
+2. Remove `file`
 3. Generate and Edit `file`
 4. Chmod 755 `file`
 
