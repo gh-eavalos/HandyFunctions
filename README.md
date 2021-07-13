@@ -5,7 +5,7 @@ Set of useful functions to smoothen the terminal experience.
 ### BasicJob
 Job header composer, capable of parallel instructions. The command 
 
-`~/HandyFunctions/Bash/Basicjob -N Download_SRA -f $Logs/Download_SRA.sh -o $Logs/Download_SRA.out -m 10 -v 10 -p 1 -t 11-1237 -c 100`
+`BasicJob -N Download_SRA -f $Logs/Download_SRA.sh -o $Logs/Download_SRA.out -m 10 -v 10 -p 1 -t 11-1237 -c 100`
 
 will produce this example output to further populate:
 ``` #!/bin/sh
@@ -24,7 +24,7 @@ will produce this example output to further populate:
 ```
 ### eFile
 Function whose utility is to string together a series of commands to generate, edit, save and make exe a file: "edit File".
-The example command: `~/HandyFunctions/Bash/eFile /Path/To/File.extension` follows these steps:
+The example command: `eFile /Path/To/File.extension` follows these steps:
 
 1. Touch `file`
 2. Remove `file`
