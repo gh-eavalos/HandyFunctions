@@ -1,0 +1,84 @@
+#!/bin/bash
+# BasicJob: Job header composer, capable of parallel instructions. Version 1.0
+# Author: Edahi Gonzalez-Avalos
+# Email:  eavalos@guardanthealth.com
+# Date:   2021.07.13
+# Versions logs
+# v1.0
+#   Date:   2021.07.13
+#   Initial version with parallel options
+#   
+
+usage()
+{
+printf "\nusage: BasicJob 
+\t[ -N  <str>  Job Name              Def:BasicJob           ]
+\t[ -f  <str>  FileOut               Def:BasicJob.sh        ]
+\t[ -o  <str>  OutPut File           Def:/tmp/BasicJob.out  ]
+\t[ -m  <#>    Soft Memory <GB>      Def:20                 ]
+\t[ -v  <#>    Hard Memory <GB>      Def:20                 ]
+\t[ -p  <#>    Proc in Parallel Jobs Def:<NONE>             ]
+\t[ -t  <#,#>  Lines 2 Run Parallel  Def:<NONE>             ]
+\t[ -c  <#>    Max Parallel Jobs     Def:<NONE>             ]
+\t[ -e  <str>  email                 Def:eavalos            ]
+\t[ -q  <str>  Queue                 Def:tissue.q           ]
+\t[  *         Print This Help                              ]
+\n"
+}
+
+# >>> Assign arguments to variables
+while [ "$1" != "" ]; do
+    case $1 in
+        -N    )       shift
+                      Name=$1
+                      ;;
+        -f    )       shift
+                      File=$1
+                      ;;
+        -o    )       shift
+                      OutF=$1
+                      ;;
+        -m    )       shift
+                      SoftMem=$1
+                      ;;
+        -v    )       shift
+                      HardMem=$1
+                      ;;
+        -p    )       shift
+                      Parallel=$1
+                      ;;
+        -t    )       shift
+                      WhichParallel=$1
+                      ;;
+        -c    )       shift
+                      MaxParallel=$1
+                      ;;
+        -e    )       shift
+                      Email=$1
+                      ;;
+        -OK   )       shift # To Be developed
+                      afterok=$1
+                      ;;
+        -q    )       shift
+                      Queue=$1
+                      ;;
+        *     )       usage
+                      exit 1
+    esac
+    shift
+done
+
+printf '#!/bin/sh
+#$ -cwd
+#$ -N  %s
+#$ -j  y
+#$ -V  
+#$ -q  %s
+#$ -l  mem_free=%sG,h_vmem=%sG
+#$ -o  %s
+#$ -S  /usr/bin/sh
+#$ -M  %s@guardanthealth.com
+' ${Name:=BasicJob} ${Queue:=tissue.q} ${SoftMem:=20} ${HardMem:=20} ${OutF:=/tmp/eavalos/BasicJob.out} ${Email:=eavalos} > ${File:=BasicJob.sh}
+[ "${Parallel}"      != "" ] && printf "#$ -pe parallel %s\n" "$Parallel"      >> $File
+[ "${WhichParallel}" != "" ] && printf "#$ -t  %s\n"          "$WhichParallel" >> $File
+[ "${MaxParallel}"   != "" ] && printf "#$ -tc %s\n"          "$MaxParallel"   >> $File
