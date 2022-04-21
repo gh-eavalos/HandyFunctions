@@ -5,7 +5,7 @@ Set of useful functions to smoothen the terminal experience.
 ### [BasicJob](https://github.com/gh-eavalos/HandyFunctions/blob/main/Bash/BasicJob)
 Job header composer, capable of parallel instructions. The command 
 
-`cd $Logs && BasicJob -N Download_SRA -f $Logs/Download_SRA.sh -o $Logs/Download_SRA.out -s 10 -v 10 -p 1 -t 11-1237 -c 100`
+`Logs=/ghds/tissue/rna_datasets/DownloadedDatasets/Logs && cd $Logs && BasicJob -N Download_SRA -f $Logs/Download_SRA.sh -o $Logs/Download_SRA.out -s 10 -v 10 -p 1 -t 11-1237 -c 100`
 
 will produce this example output (`$Logs/Download_SRA.sh`) to further populate:
 ```
@@ -33,3 +33,8 @@ The example command: `eFile /Path/To/File.extension` follows these steps:
 3. Generate and Edit `file` (w/nano instead of vim)
 4. Chmod 755 `file`
 
+### [EnumCols](https://github.com/gh-eavalos/HandyFunctions/blob/main/Bash//EnumCols)
+Utility that enumerates the columns of a `tab` separated file. The position input is the <File> to process and [optional] row to use (default to the 1st).
+
+### [EnumColsComma](https://github.com/gh-eavalos/HandyFunctions/blob/main/Bash//EnumColsComma)
+Similar to `EnumCols` taking as input a `comma` separated file.

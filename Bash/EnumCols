@@ -1,0 +1,6 @@
+# Bash script to enum columns of a given tab-separated file
+# Arguments:
+# $1 == <File>
+# $2 == Row to use; Default to 1st
+
+sed ${2:-1}'!d' $1 | tr '\t' '\n' | awk '{print NR"\t"$_}'
