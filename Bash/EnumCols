@@ -1,4 +1,14 @@
-# Bash script to enum columns of a given tab-separated file
+#!/bin/bash
+# EnumCols: Bash script to enum columns of a given tab-separated file. Version 1.0
+# Author: Edahi Gonzalez-Avalos
+# Email:  eavalos@guardanthealth.com
+# Date:   2022.04.21
+# Versions logs
+# v1.0
+#   Date:   2022.04.21
+#   Initial version sed-based
+#   
+
 # Arguments:
 # $1 == <File>
 # $2 == Row to use; Default to 1st

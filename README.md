@@ -37,4 +37,4 @@ The example command: `eFile /Path/To/File.extension` follows these steps:
 Utility that enumerates the columns of a `tab` separated file. The position input is the <File> to process and [optional] row to use (default to the 1st).
 
 ### [EnumColsComma](https://github.com/gh-eavalos/HandyFunctions/blob/main/Bash//EnumColsComma)
-Similar to `EnumCols` taking as input a `comma` separated file.
+Similar to [EnumCols](https://github.com/gh-eavalos/HandyFunctions#enumcols) taking as input a `comma` separated file.
